@@ -1,0 +1,24 @@
+[package]
+name = "k8s-crds-gateway-api"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Kubernetes CRDs for the Gateway API"
+repository = "https://github.com/kube-crds-rs/gateway-api"
+
+[dependencies]
+k8s-openapi = "0.21.0"
+kube = { version = "0.88.1", default-features = false }
+kube-derive = "0.88.1"
+schemars = { version = "0.8.16", optional = true }
+serde = { version = "1.0.196", default-features = false, features = ["derive"] }
+serde_json = { version = "1.0", default-features = false }
+typed-builder = { version = "0.18.1", optional = true }
+
+[package.metadata.docs.rs]
+features = ["_docs"]
+
+[features]
+schemars = ["dep:schemars", "k8s-openapi/schemars", "kube/derive"]
+builder = ["dep:typed-builder"]
+_docs = ["k8s-openapi/v1_29"]
